@@ -1,4 +1,5 @@
 # Rufus Reimagined with WinUI 3
+![image](https://github.com/rasyidf/rufus-next/assets/28984914/9df71fcb-f252-48cb-9a95-b2bec82b8081)
 
 Reimagining the Reliable USB Formatting Utility with WinUI 3 for a modern and enhanced user experience.
 
