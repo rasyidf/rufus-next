@@ -3,6 +3,8 @@
 
 Reimagining the Reliable USB Formatting Utility with WinUI 3 for a modern and enhanced user experience.
 
+<span style="color: red;">!!</span> <strong>Note: This isn't working app, currently in development mode, and the readme is written by the holy ChatGPT</strong>
+
 ## Overview
 
 This project aims to bring the power and reliability of Rufus to the next level by leveraging WinUI 3, the latest UI framework from Microsoft. Upgrade your USB formatting experience with a sleek, intuitive, and feature-rich interface.
@@ -39,7 +41,7 @@ We welcome contributions! If you have ideas, bug fixes, or new features to propo
 
 ## Feedback and Support
 
-For bug reports or feature requests, please visit our [GitHub Issues](https://github.com/rasyidf/rufus-next/issues) page. For general support, reach out to us at [support@yourdomain.com](mailto:support@yourdomain.com).
+For bug reports or feature requests, please visit our [GitHub Issues](https://github.com/rasyidf/rufus-next/issues) page. For general support, reach out to us at [support@yourdomain.com](mailto:support@rasyid.dev).
 
 ## License
 
