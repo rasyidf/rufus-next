@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Rufus (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Rufus (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
