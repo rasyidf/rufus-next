@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,17 +16,17 @@ public partial class MainViewModel : ObservableRecipient, INavigationAware
     public ObservableCollection<UsbDrive> Drives { get; } = new();
 
     [ObservableProperty]
-    private UsbDrive? selectedDrive;
+    public partial UsbDrive? SelectedDrive { get; set; }
 
     [ObservableProperty]
-    private bool isRefreshing;
+    public partial bool IsRefreshing { get; set; }
 
     [ObservableProperty]
-    private bool listUsbHardDrives;
+    public partial bool ListUsbHardDrives { get; set; }
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasStatusMessage))]
-    private string? statusMessage;
+    public partial string? StatusMessage { get; set; }
 
     public bool HasStatusMessage => !string.IsNullOrEmpty(StatusMessage);
 
