@@ -12,6 +12,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Spacing="8">
+            <InfoBar
+                IsOpen="{x:Bind ViewModel.HasStatusMessage, Mode=OneWay}"
+                IsClosable="False"
+                Severity="Informational"
+                Message="{x:Bind ViewModel.StatusMessage, Mode=OneWay}" />
             <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True" Margin="0" Header="Drive Properties">
 
                 <StackPanel Spacing="8">
@@ -21,13 +26,29 @@
                             <ColumnDefinition Width="16"/>
                             <ColumnDefinition Width="48"/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Grid.Column="0" SelectedIndex="0" Header="Device" PlaceholderText="Select Drive" HorizontalAlignment="Stretch">
-                            <ComboBox.Items>
-                                <ComboBoxItem >D:/</ComboBoxItem>
-                                <ComboBoxItem >E:/</ComboBoxItem>
-                                <ComboBoxItem >F:/</ComboBoxItem>
-                            </ComboBox.Items>
-                        </ComboBox> 
+                        <ComboBox
+                            Grid.Column="0"
+                            Header="Device"
+                            HorizontalAlignment="Stretch"
+                            PlaceholderText="No device selected"
+                            DisplayMemberPath="DisplayName"
+                            ItemsSource="{x:Bind ViewModel.Drives, Mode=OneWay}"
+                            SelectedItem="{x:Bind ViewModel.SelectedDrive, Mode=TwoWay}" />
+                        <ProgressRing
+                            Grid.Column="1"
+                            Width="16"
+                            Height="16"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,10"
+                            IsActive="{x:Bind ViewModel.IsRefreshing, Mode=OneWay}" />
+                        <Button
+                            Grid.Column="2"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch"
+                            ToolTipService.ToolTip="Refresh device list"
+                            Command="{x:Bind ViewModel.RefreshCommand}">
+                            <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                        </Button>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -78,7 +99,7 @@
             </Expander>
             <Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Header="Advanced Drive Properties">
                 <StackPanel>
-                    <CheckBox>List USB Hard Drives</CheckBox>
+                    <CheckBox IsChecked="{x:Bind ViewModel.ListUsbHardDrives, Mode=TwoWay}">List USB Hard Drives</CheckBox>
                     <CheckBox>Add fixes for old BIOSes (extra partition, align, etc.)</CheckBox>
                     <CheckBox>Use Rufus MBR with BIOS</CheckBox>
                 </StackPanel>
