@@ -9,11 +9,11 @@ A WinUI 3 / Fluent Design reimagining of the Rufus USB formatting utility.
 Being honest about where this stands, because the screenshot looks more finished
 than the code is:
 
-- The interface is laid out, but **not wired to anything**. The device dropdown
-  shows hardcoded placeholder entries, not real drives.
-- There is **no disk, partition, or ISO logic** in the repository at all.
-- Nothing here will format or write to a USB device. It cannot damage a drive,
-  because it never touches one.
+- The device dropdown lists **real USB devices**, read from WMI. Everything else
+  on the page is still static layout, not wired to anything.
+- There is **no partition, format, or ISO logic** in the repository.
+- Nothing here writes to a USB device. Enumeration is read-only, so it cannot
+  damage a drive.
 
 Treat this as a design study and a starting point, not a tool you can use.
 
@@ -21,8 +21,8 @@ Treat this as a design study and a starting point, not a tool you can use.
 
 Working toward an app that actually writes bootable media:
 
-- [ ] Real device enumeration (WMI `Win32_DiskDrive` / SetupAPI)
-- [ ] Bind the UI to a view model instead of static placeholder items
+- [x] Real device enumeration (WMI `Win32_DiskDrive`)
+- [x] Bind the device list to a view model instead of static placeholder items
 - [ ] Partition and format via Virtual Disk Service / `DeviceIoControl`
 - [ ] ISO inspection and extraction
 - [ ] Raw image writing with progress and cancellation
