@@ -1,53 +1,84 @@
-# Rufus Reimagined with WinUI 3
+# Rufus Next
 
-Reimagining the Reliable USB Formatting Utility with WinUI 3 for a modern and enhanced user experience.
+A WinUI 3 / Fluent Design reimagining of the Rufus USB formatting utility.
 
-<div style="color: red;">!!</div> <strong>Note: This isn't working app, currently in development mode, and the readme is written by the holy ChatGPT</strong>
+![Screenshot of the current UI shell](https://github.com/rasyidf/rufus-next/assets/28984914/c78d5f58-8e49-438c-bbf6-7e6b8a3581a7)
 
-![image](https://github.com/rasyidf/rufus-next/assets/28984914/c78d5f58-8e49-438c-bbf6-7e6b8a3581a7)
+## Status: UI shell only — it does not write drives yet
 
-## Overview
+Being honest about where this stands, because the screenshot looks more finished
+than the code is:
 
-This project aims to bring the power and reliability of Rufus to the next level by leveraging WinUI 3, the latest UI framework from Microsoft. Upgrade your USB formatting experience with a sleek, intuitive, and feature-rich interface.
+- The interface is laid out, but **not wired to anything**. The device dropdown
+  shows hardcoded placeholder entries, not real drives.
+- There is **no disk, partition, or ISO logic** in the repository at all.
+- Nothing here will format or write to a USB device. It cannot damage a drive,
+  because it never touches one.
 
-## Features
+Treat this as a design study and a starting point, not a tool you can use.
 
-- **Modern UI:** Embrace the Fluent Design System with a clean and contemporary user interface.
-- **Enhanced Performance:** Leverage the capabilities of WinUI 3 for smooth and responsive interactions.
-- **New Features:** Introduce innovative functionalities to make USB formatting even more versatile.
-- **Compatibility:** Ensure seamless integration with the latest Windows environments.
+## Roadmap
 
-## Getting Started
+Working toward an app that actually writes bootable media:
 
-### Prerequisites
+- [ ] Real device enumeration (WMI `Win32_DiskDrive` / SetupAPI)
+- [ ] Bind the UI to a view model instead of static placeholder items
+- [ ] Partition and format via Virtual Disk Service / `DeviceIoControl`
+- [ ] ISO inspection and extraction
+- [ ] Raw image writing with progress and cancellation
+- [ ] Windows ISO support (WIM splitting for FAT32's 4 GB file limit)
+- [ ] CI build workflow and a real test suite
 
-Make sure you have the following installed:
+## Relationship to Rufus
 
-- [Visual Studio](https://visualstudio.microsoft.com/)
-- [WinUI 3](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/)
+Rufus is created and maintained by [Pete Batard](https://github.com/pbatard) at
+[pbatard/rufus](https://github.com/pbatard/rufus), and is licensed GPL-3.0.
 
-### Building Rufus Reimagined
+**This project is unofficial and not affiliated with, endorsed by, or supported
+by the Rufus project.** It borrows the name and the general shape of the
+interface out of admiration for the original. Please do not report problems with
+this project to the upstream Rufus issue tracker.
 
-1. Clone this repository.
-2. Open the solution in Visual Studio.
-3. Build the project.
+## Building
 
-### Running Rufus Reimagined
+Requires [Visual Studio 2022](https://visualstudio.microsoft.com/) with the
+Windows App SDK workload.
 
-Launch the application in your preferred debugging environment to experience the reimagined Rufus.
+```
+git clone https://github.com/rasyidf/rufus-next.git
+```
+
+Open `Rufus.sln` and build. A `.vsconfig` is included, so Visual Studio will
+offer to install any missing components.
+
+## Branches
+
+- **`main`** — GPL-3.0. The project going forward.
+- **`mit-ui`** — MIT snapshot of the UI shell, frozen at the point of
+  relicensing. Reusable as a WinUI 3 starting point for unrelated projects.
+  It contains no GPL-derived code and no Rufus code, and nothing from `main`
+  will be merged back into it.
 
 ## Contributing
 
-We welcome contributions! If you have ideas, bug fixes, or new features to propose, feel free to open an issue or submit a pull request.
-
-## Feedback and Support
-
-For bug reports or feature requests, please visit our [GitHub Issues](https://github.com/rasyidf/rufus-next/issues) page. For general support, reach out to us at [support@yourdomain.com](mailto:support@rasyid.dev).
+Issues and pull requests are welcome. Contributions to `main` are accepted under
+GPL-3.0.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Copyright (C) 2024 M Fahmi Rasyid
 
----
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
 
-**Note:** This project is a reimagining of Rufus and is not affiliated with the original Rufus project.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+See [LICENSE](LICENSE) for the full text.
+
+The project moved from MIT to GPL-3.0 to match upstream Rufus, so that Rufus
+code can be referenced or incorporated as the implementation progresses, and so
+that derivative works stay open source.
